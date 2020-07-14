@@ -31,10 +31,13 @@
                         
                     </div>
                     <div class="card-footer">
-                        <a href="{% url 'home' %}" class="btn btn-primary">Cancel</a>
-                        <button type="submit" class="btn btn-danger">
-                            <span class="spinner-border spinner-border-sm"></span>Delete
-                        </button> 
+                        <form action="" method="POST">
+                            {% csrf_token %}
+                            <a href="{% url 'home' %}" class="btn btn-primary">Cancel</a>
+                            <button type="submit" class="btn btn-danger">
+                                <span class="spinner-border spinner-border-sm"></span>Delete
+                            </button> 
+                        </form>    
                     </div>
                 </div>
             </div>
