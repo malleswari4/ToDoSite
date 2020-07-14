@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <script src="{% static 'jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <!-- <script src="{% static 'js/myjs.js' %}"></script> -->
+    <title>ToDo</title>
+</head>
+<body>
+    <div class="text-center text-white" id="header">
+        <h1 class="display-4 "><span class=""></span>ToDo List</h1>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <h3>Edit Task</h3>
+                    </div>
+                    <div class="card-body">
+                        <form action="" method="POST">
+                            {% csrf_token %}
+                            {{form.as_p}}
+                            <button type="submit" class="btn btn-primary">
+                                <span class="spinner-border spinner-border-sm"></span>Edit
+                            </button>
+                            <a href="{% url 'home' %}" class="btn btn-danger">Cancel</a>
+                            
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4"></div>
+        </div>
+    </div>
+ 
+    
+</body>
+</html>

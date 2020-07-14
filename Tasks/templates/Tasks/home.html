@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <script src="{% static 'jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'fontawesome/bootstrap-social.css' %}"></script>
+    <script src="{% static 'fontawesome/font-awesome.min.css' %}"></script>
+    <!-- <script src="{% static 'js/myjs.js' %}"></script> -->
+    <title>ToDo</title>
+</head>
+<body>
+    <div class="text-center text-white " id="header">
+        <h1 class="display-4 font-italic">ToDo List</h1>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <h4>Create a Task</h4>
+                    </div>
+                    <div class="card-body" id="card-body">
+                        <form action="" method="POST"> 
+                            {% csrf_token %}
+                            {{form.as_p}}
+                            <input type="submit" value="add">
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2">
+
+            </div>
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-body " id="task">
+                        {% for task in tasks %}
+                        
+                            <h2 class="card-title">Title:-{{task.title}}</h2>
+                            <p class="card-text font-italic">1.{{task.tasks}}</p>
+                            <p class="card-text font-italic">{{task.date}}</p>
+                            {% if task.completed is False %}
+                                <p class="card-text font-italic">Task Not Completed</p>
+                            {% else %}
+                                <p class="card-text font-italic">Task Completed</p>
+                            {% endif %}
+                            <a href="{% url 'edit' task.id %}" class="btn-sm btn-warning">Edit</a>
+                            <a href="{% url 'delete' task.id %}" class="btn-sm btn-danger">Delete</a>
+                            <hr>
+                        {% endfor %}
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</body>
+</html>
