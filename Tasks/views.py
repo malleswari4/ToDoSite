@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from Tasks.models import *
 from Tasks.forms import *
 # Create your views here.
-def home(request):
+def index(request):
     form=TaskForm()
     tasks=Task.objects.all()
     data={'form':form,'tasks':tasks}
@@ -11,8 +11,8 @@ def home(request):
         form=TaskForm(request.POST)
         if form.is_valid():
             form.save()
-        return redirect('/')
-    return render(request,'Tasks/home.html',data)
+        return redirect('/index')
+    return render(request,'Tasks/index.html',data)
 
 def edit(request,pk):
     task=Task.objects.get(id=pk)
@@ -21,7 +21,7 @@ def edit(request,pk):
         form=TaskForm(request.POST,instance=task)
         if form.is_valid():
             form.save()
-            return redirect("/")
+            return redirect("/index")
     context={'form':form}
     return render(request,'Tasks/edit.html',context)
 
@@ -30,5 +30,5 @@ def delete(request,pk):
     context={'item':item}
     if request.method=='POST':
         item.delete()
-        return redirect('/')
+        return redirect('/index')
     return render(request,'Tasks/delete.html',context)
